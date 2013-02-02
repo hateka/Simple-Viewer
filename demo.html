@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Simple Viewer</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script src="jquery-1.6.1.min.js"></script>
+<script src="simple_viewer.js"></script>
+<style type="text/css">
+#wrap{
+width:950px;
+margin:0 auto;
+overflow:hidden;
+}
+
+#display_area{
+width:450px;
+padding:5px 20px 0 30px;
+}
+
+#imgs{
+width:420px;
+float:left;
+}
+
+.photos{
+padding:0 0 0 5px;
+}
+
+#move{
+list-style:none;
+}
+
+#move li{
+float:left;
+padding:15px 0 0 15px;
+}
+
+#title{
+padding:0 0 0 30px;
+}
+
+#main_photo{
+width:490px;
+float:left;
+}
+
+#content{
+width:450px;
+float:left;
+}
+
+#pin{
+width:445px;
+padding:10px 0 0 25px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div id="wrap">
+<div id="title">
+<h1>Simple Viewer</h1>
+</div>
+
+<div id="main_photo">
+<div id="display_area"></div>
+<div id="pin"></div>
+</div>
+
+<div id="content">
+<div id="imgs"></div>
+
+<ul id="move">
+<li><a id="pre" href="#"><</a></li>
+<li><a id="next" href="#">></a></li>
+</ul>
+
+</div>
+
+</div>
+
+<script>
+var p = new Slid();
+var now = p.get_locat();
+var pre = document.getElementById('pre');
+var next = document.getElementById('next');
+var filenum;
+
+if(typeof(now) == 'undefined'){
+   p.init(0,setting.lim_num-1);
+   p.page(pre);
+}else{
+   var st = now * setting.lim_num;
+   p.init(st,st+setting.lim_num-1);
+   p.page(next);
+}
+
+pre.addEventListener('click',p.back_page,false);
+next.addEventListener('click',p.is_next,false);
+
+
+</script>
+
+</body>
+</html>
